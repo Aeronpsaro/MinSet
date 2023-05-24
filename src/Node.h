@@ -1,41 +1,34 @@
 #pragma once
+#include "../deps/cset/cset.h"
+#include "../deps/templated-hashmap/hashmap.h"
+#include "String.h"
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include "../deps/cset/cset.h"
-#include "String.h"
+#include <sys/types.h>
 
 typedef struct Node Node;
-typedef Node * NodePointer;
+typedef Node *NodePointer;
 Cset(NodePointer) NodeSet;
 
 Cset_iterator(NodeSet) NodeSetIterator;
 
+typedef HASHMAP(NodePointer, uint) NodeMap;
+
 struct Node {
 	string word;
 	NodeSet children;
-	unsigned int parentCount;
-	Node **parents;
+	NodeMap parents;
 };
 
+Node *initializeNode(string word);
 
-static inline void freeNode(Node *node) {
-	cset__free(&node->children);
-	free(node->parents);
-	free(node);
-}
+void freeNode(Node *node);
 
-static inline bool isChild(Node *child, Node *parent) {
-	bool isChild;
-	cset__contains(&parent->children, child, &isChild);
-	return isChild;
-}
+void addParent(Node *node, Node *parentNode);
 
-static inline size_t nodeChildCount(Node *node) {
-	return cset__size(&node->children);
-}
+bool isChild(Node *child, Node *parent);
 
-#define foreachChild(node, child)\
-NodeSetIterator iterator;\
-cset_iterator__init(&iterator, & node);\
-for (Node * child; cset_iterator__next(&iterator, child); cset_iterator__done(&iterator))
+size_t nodeChildCount(Node *node);
+
+uint parentCount(Node *node);

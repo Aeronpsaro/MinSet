@@ -25,6 +25,9 @@ $(BUILD)/ReadWords.o: $(SRC)/ReadWords.c $(BUILD)/StringSet.o
 $(BUILD)/GetCore.o: $(SRC)/GetCore.c
 	$(CC) $(DEBUGFLAGS) -c $(SRC)/GetCore.c deps/templated-hashmap/hashmap.o -o $(BUILD)/GetCore.o
 
+$(BUILD)/Node.o: $(SRC)/Node.c
+	$(CC) $(DEBUGFLAGS) -c $(SRC)/Node.c deps/templated-hashmap/hashmap.o -o $(BUILD)/Node.o
+
 $(BUILD)/MinSet.o: $(SRC)/MinSet.c
 	$(CC) $(DEBUGFLAGS) -c $(SRC)/MinSet.c deps/templated-hashmap/hashmap.o -o $(BUILD)/MinSet.o
 

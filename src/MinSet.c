@@ -5,18 +5,17 @@
 #include "../deps/cset/cset.h"
 #include "Node.h"
 #include "Map.h"
+#include "MinSet.h"
 
-void addParents(Node *node, uint l, Node *parents[l]) {
-	uint initialCount = node->parentCount;
-	node->parentCount += l;
-	node->parents =
-	    realloc(node->parents, node->parentCount * sizeof(Node *));
-	for (uint i = initialCount; i < node->parentCount; i++) {
-		node->parents[i] = parents[i - initialCount];
+void addParents(Node *node, Node *parentsNode) {
+	const NodePointer *parent;
+	hashmap_foreach_key(parent, &parentsNode->parents) {
+		addParent(node, *parent);
 	}
 }
 
-void addChildren(Node *node, NodeSet *children) {
+void addChildren(Node *node, Node *childrenNode) {
+	NodeSet *children = &childrenNode->children;
 	NodeSet temp;
 	cset__init(&temp);
 	cset__union(&temp, &node->children, children);
@@ -28,29 +27,11 @@ void removeNodeFromParent(Node *node, Node *parent) {
 }
 
 uint parentAppearances(Node *node, Node *parent) {
-	uint parentAppearancesCount = 0;
-	for (uint i = 0; i < node->parentCount; i++) {
-		if (node->parents[i] == parent) {
-			parentAppearancesCount++;
-		}
-	}
-	return parentAppearancesCount;
+	return *hashmap_get(&node->parents, &parent);
 }
 
 void removeNodeFromChild(Node *node, Node *child) {
-	uint finalParentCount = child->parentCount - parentAppearances(child, node);
-	Node **finalParents = malloc(finalParentCount * sizeof(Node *));
-	uint j = 0;
-	for (uint i = 0; i < child->parentCount; i++) {
-		if (child->parents[i] != node) {
-			finalParents[j] = child->parents[i];
-			j++;
-		}
-	}
-	//assert(finalParentCount == j);
-	free(child->parents);
-	child->parents = finalParents;
-	child->parentCount = finalParentCount;
+	hashmap_remove(&child->parents, &node);
 }
 
 void removeNode(Node *node) {
@@ -59,12 +40,13 @@ void removeNode(Node *node) {
 	while(!cset_iterator__done(&iterator)) {
 		Node **child;
 		cset_iterator__next(&iterator, child);
-		addParents(*child, node->parentCount, node->parents);
+		addParents(*child, node);
 		removeNodeFromChild(node, *child);
 	}
-	for (uint i = 0; i < node->parentCount; i++) {
-		addChildren(node->parents[i], &node->children);
-		removeNodeFromParent(node, node->parents[i]);
+	const NodePointer *parent;
+	hashmap_foreach_key(parent, &node->parents) {
+		addChildren(*parent, node);
+		removeNodeFromParent(node, *parent);
 	}
 	freeNode(node);
 }
@@ -73,11 +55,6 @@ bool isSelfParent(Node *node) {
 	bool isSelfParent;
 	cset__contains(&node->children, node, &isSelfParent);
 	return isSelfParent;
-	//for (uint i = 0; i < node->parentCount; i++) {
-	//	if (node == node->parents[i])
-	//		return true;
-	//}
-	//return false;
 }
 
 void getMinSet(Map *graphDict) {
@@ -88,7 +65,7 @@ void getMinSet(Map *graphDict) {
 		removeable = false;
 		hashmap_foreach_key_safe(word, graphDict, tmp) {
 			Node *node = hashmap_get(graphDict, word);
-			if (!isSelfParent(node) && node->parentCount >= 1) {
+			if (!isSelfParent(node) && parentCount(node) >= 1) {
 				hashmap_remove(graphDict, word);
 				removeNode(node);
 				removeable = true;
