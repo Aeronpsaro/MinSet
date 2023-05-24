@@ -1,4 +1,4 @@
-/* This file was automatically generated.  Do not edit! */
-#undef INTERFACE
+#pragma once
+#include "Node.h"
 void printParents(Node *word);
 void printChildren(Node *word);

@@ -1,15 +1,15 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
 #include "../deps/cset/cset.h"
 #include "../deps/templated-hashmap/hashmap.h"
-#include "Node.h"
-#include "Map.h"
-#include "StringSet.h"
-#include "ReadWords.h"
 #include "GetCore.h"
-#include "PrintUtils.h"
+#include "Map.h"
 #include "MinSet.h"
+#include "Node.h"
+#include "PrintUtils.h"
+#include "ReadWords.h"
+#include "StringSet.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int main() {
 	FILE *validWordsDict = fopen("dict/Clave_con_categorías.txt", "r");
@@ -17,13 +17,15 @@ int main() {
 	StringSet *validWords = readDict(validWordsDict);
 	Map *graphDict = readDefs(dictionary, validWords);
 	cset__free(validWords);
-	printf("El número de palabras del diccionario es %zu\n", hashmap_size(graphDict));
+	printf("El número de palabras del diccionario es %zu\n",
+	       hashmap_size(graphDict));
 	getCore(graphDict);
-	printf("El número de palabras del núcleo del diccionario es %zu\n", hashmap_size(graphDict));
+	printf("El número de palabras del núcleo del diccionario es %zu\n",
+	       hashmap_size(graphDict));
 	getMinSet(graphDict);
-	printf("El número de palabras del pseudoconjunto mínimo del diccionario es %zu\n", hashmap_size(graphDict));
+	printf("El número de palabras del pseudoconjunto mínimo del "
+	       "diccionario es %zu\n",
+	       hashmap_size(graphDict));
 	const char *word;
-	hashmap_foreach_key(word, graphDict) {
-		printf("%s\n", word);
-	}
+	hashmap_foreach_key(word, graphDict) { printf("%s\n", word); }
 }

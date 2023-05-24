@@ -1,9 +1,9 @@
+#include "../deps/cset/cset.h"
+#include "Map.h"
+#include "Node.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include "../deps/cset/cset.h"
-#include "Node.h"
-#include "Map.h"
 
 void removeChildlessNode(Node *node) {
 	for (uint i = 0; i < node->parentCount; i++) {

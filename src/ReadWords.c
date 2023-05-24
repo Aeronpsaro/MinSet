@@ -1,13 +1,14 @@
-#include <stdlib.h>
+#include "ReadWords.h"
+#include "../deps/templated-hashmap/hashmap.h"
+#include "Map.h"
+#include "Node.h"
+#include "String.h"
+#include "StringSet.h"
+#include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
-#include <stdbool.h>
-#include "../deps/templated-hashmap/hashmap.h"
-#include "Node.h"
-#include "Map.h"
-#include "StringSet.h"
-#include "ReadWords.h"
 
 #define dictSize 41493
 

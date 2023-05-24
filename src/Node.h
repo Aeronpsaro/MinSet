@@ -1,9 +1,9 @@
+#pragma once
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "../deps/cset/cset.h"
-
-typedef char * string;
+#include "String.h"
 
 typedef struct Node Node;
 typedef Node * NodePointer;

@@ -1,13 +1,12 @@
-typedef char* string;
 #include "StringSet.h"
+#include "../deps/cset/cset.h"
+#include "String.h"
 
-cset__u64 strHash(string *str, cset__u64 (*hash)(void*, size_t)) {
+cset__u64 strHash(string *str, cset__u64 (*hash)(void *, size_t)) {
 	return hash(*str, strlen(*str));
 }
 
-bool strCmp(string *str1, string *str2) {
-	return strcmp(*str1, *str2)==0;
-}
+bool strCmp(string *str1, string *str2) { return strcmp(*str1, *str2) == 0; }
 
 void stringSetInitialize(StringSet *stringSet) {
 	cset__init(stringSet);
