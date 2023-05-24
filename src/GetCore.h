@@ -1,0 +1,1 @@
+void getCore(Map *graphDict);
