@@ -7,7 +7,7 @@ size_t nodePointerHash(const NodePointer *x) {
 }
 
 int nodePointerCompare(const NodePointer *x, const NodePointer *y) {
-	return *x == *y;
+	return !(*x == *y);
 }
 
 Node *initializeNode(string word) {
@@ -16,8 +16,9 @@ Node *initializeNode(string word) {
 	NodeSet children;
 	cset__init(&children);
 	node->children = children;
-	NodeMap *parents = (NodeMap *)malloc(sizeof(Node));
-	hashmap_init(parents, nodePointerHash, nodePointerCompare);
+	NodeMap parents;
+	hashmap_init(&parents, nodePointerHash, nodePointerCompare);
+	node->parents = parents;
 	return node;
 }
 

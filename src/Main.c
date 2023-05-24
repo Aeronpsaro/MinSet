@@ -19,6 +19,9 @@ int main() {
 	cset__free(validWords);
 	printf("El número de palabras del diccionario es %zu\n",
 	       hashmap_size(graphDict));
+	const char *word;
+	Node *node;
+	hashmap_foreach_data(node, graphDict) { printParents(node); }
 	getCore(graphDict);
 	printf("El número de palabras del núcleo del diccionario es %zu\n",
 	       hashmap_size(graphDict));
@@ -26,6 +29,5 @@ int main() {
 	printf("El número de palabras del pseudoconjunto mínimo del "
 	       "diccionario es %zu\n",
 	       hashmap_size(graphDict));
-	const char *word;
 	hashmap_foreach_key(word, graphDict) { printf("%s\n", word); }
 }

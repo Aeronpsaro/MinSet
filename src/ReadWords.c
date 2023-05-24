@@ -24,7 +24,7 @@ StringSet *readDict(FILE *dictionary) {
 }
 
 static inline void getDefinition(FILE *dictionary, Map *map, Node *wordNode) {
-	string parent = malloc(40 * sizeof(string));
+	string parent = malloc(40 * sizeof(char));
 	while (fscanf(dictionary, "%s", parent) != EOF) {
 		Node *parentNode = hashmap_get(map, parent);
 		if (parentNode == NULL) {
@@ -37,14 +37,14 @@ static inline void getDefinition(FILE *dictionary, Map *map, Node *wordNode) {
 		addParent(wordNode, parentNode);
 		if (fgetc(dictionary) == '\n')
 			break;
-		parent = malloc(40 * sizeof(string));
+		parent = malloc(40 * sizeof(char));
 	}
 }
 
 Map *readDefs(FILE *dictionary, StringSet *validWords) {
 	Map *graphDict = malloc(sizeof(Map));
 	hashmap_init(graphDict, hashmap_hash_string, strcmp);
-	string word = malloc(40 * sizeof(string));
+	string word = malloc(40 * sizeof(char));
 	while (fscanf(dictionary, "#%s\n", word) != EOF) {
 		bool isValid;
 		cset__contains(validWords, word, &isValid);
@@ -58,7 +58,7 @@ Map *readDefs(FILE *dictionary, StringSet *validWords) {
 			hashmap_put(graphDict, word, wordNode);
 		}
 		getDefinition(dictionary, graphDict, wordNode);
-		word = malloc(40 * sizeof(string));
+		word = malloc(40 * sizeof(char));
 	}
 	return graphDict;
 }
