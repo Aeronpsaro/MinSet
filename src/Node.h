@@ -13,7 +13,7 @@ Cset(NodePointer) NodeSet;
 
 Cset_iterator(NodeSet) NodeSetIterator;
 
-typedef HASHMAP(NodePointer, uint) NodeMap;
+typedef HASHMAP(Node, uint) NodeMap;
 
 struct Node {
 	string word;

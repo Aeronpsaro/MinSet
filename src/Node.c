@@ -1,13 +1,15 @@
 #include "Node.h"
+#include "PrintUtils.h"
 #include <stdbool.h>
+#include <stdlib.h>
 #include <sys/types.h>
 
-size_t nodePointerHash(const NodePointer *x) {
-	return hashmap_hash_default(x, sizeof(NodePointer));
+size_t nodePointerHash(const Node *x) {
+	return hashmap_hash_default(&x, sizeof(Node *));
 }
 
-int nodePointerCompare(const NodePointer *x, const NodePointer *y) {
-	return !(*x == *y);
+int nodePointerCompare(const Node *x, const Node *y) {
+	return x - y;
 }
 
 Node *initializeNode(string word) {
@@ -23,14 +25,19 @@ Node *initializeNode(string word) {
 }
 
 void addParent(Node *node, Node *parentNode) {
+	// static uint times = 0;
+	// if (times > 20)
+	// 	exit(EXIT_SUCCESS);
 	uint *parentCount;
-	if (!(parentCount = hashmap_get(&node->parents, &parentNode))) {
+	if (!(parentCount = hashmap_get(&node->parents, parentNode))) {
 		parentCount = malloc(sizeof(uint));
 		*parentCount = 1;
-		hashmap_put(&node->parents, &parentNode, parentCount);
+		hashmap_put(&node->parents, parentNode, parentCount);
 	} else {
 		*parentCount = *parentCount + 1;
 	}
+	// printParentsAdresses(node);
+	// times++;
 }
 
 void freeNode(Node *node) {
