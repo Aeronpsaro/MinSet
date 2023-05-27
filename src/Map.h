@@ -4,3 +4,4 @@
 
 typedef HASHMAP(char, Node) Map;
 
+extern Map *graphDict;

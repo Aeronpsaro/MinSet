@@ -13,7 +13,7 @@ Cset(NodePointer) NodeSet;
 
 Cset_iterator(NodeSet) NodeSetIterator;
 
-typedef HASHMAP(Node, uint) NodeMap;
+typedef HASHMAP(char, uint) NodeMap;
 
 struct Node {
 	string word;
@@ -32,3 +32,5 @@ bool isChild(Node *child, Node *parent);
 size_t nodeChildCount(Node *node);
 
 uint parentCount(Node *node);
+
+Node *getNodeFromWord(const char *word);

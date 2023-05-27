@@ -11,11 +11,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+Map *graphDict;
+
 int main() {
 	FILE *validWordsDict = fopen("dict/Clave_con_categorías.txt", "r");
 	FILE *dictionary = fopen("dict/Clave_Legible.txt", "r");
 	StringSet *validWords = readDict(validWordsDict);
-	Map *graphDict = readDefs(dictionary, validWords);
+	graphDict = readDefs(dictionary, validWords);
 	cset__free(validWords);
 	printf("El número de palabras del diccionario es %zu\n",
 	       hashmap_size(graphDict));

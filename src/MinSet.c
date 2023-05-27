@@ -8,9 +8,9 @@
 #include "MinSet.h"
 
 void addParents(Node *node, Node *parentsNode) {
-	Node *parent;
+	const char *parent;
 	hashmap_foreach_key(parent, &parentsNode->parents) {
-		addParent(node, parent);
+		addParent(node, getNodeFromWord(parent));
 	}
 }
 
@@ -27,11 +27,11 @@ void removeNodeFromParent(Node *node, Node *parent) {
 }
 
 uint parentAppearances(Node *node, Node *parent) {
-	return *hashmap_get(&node->parents, parent);
+	return *hashmap_get(&node->parents, parent->word);
 }
 
 void removeNodeFromChild(Node *node, Node *child) {
-	hashmap_remove(&child->parents, node);
+	hashmap_remove(&child->parents, node->word);
 }
 
 void removeNode(Node *node) {
@@ -43,10 +43,10 @@ void removeNode(Node *node) {
 		addParents(*child, node);
 		removeNodeFromChild(node, *child);
 	}
-	Node *parent;
+	const char *parent;
 	hashmap_foreach_key(parent, &node->parents) {
-		addChildren(parent, node);
-		removeNodeFromParent(node, parent);
+		addChildren(getNodeFromWord(parent), node);
+		removeNodeFromParent(node, getNodeFromWord(parent));
 	}
 	freeNode(node);
 }

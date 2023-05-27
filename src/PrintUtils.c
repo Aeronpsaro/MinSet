@@ -15,16 +15,16 @@ void printChildren(Node *word) {
 
 void printParents(Node *word) {
 	printf("Definición: ");
-	const Node *parent;
+	const char *parent;
 	hashmap_foreach_key(parent, &word->parents) {
-		printf("%s ", parent->word);
+		printf("%s ", getNodeFromWord(parent)->word);
 	}
 	printf("\n");
 }
 
 void printParentsAdresses(Node *word) {
 	printf("Definición: ");
-	const Node *parent;
+	const char *parent;
 	hashmap_foreach_key(parent, &word->parents) {
 		printf("%p ", parent);
 	}

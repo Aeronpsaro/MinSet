@@ -6,9 +6,9 @@
 #include <sys/types.h>
 
 void removeChildlessNode(Node *node) {
-	Node *parent;
+	const char *parent;
 	hashmap_foreach_key(parent, &node->parents) {
-		cset__remove(&parent->children, node);
+		cset__remove(&(getNodeFromWord(parent))->children, node);
 	}
 	freeNode(node);
 }

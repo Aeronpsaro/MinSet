@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "Map.h"
 #include "PrintUtils.h"
 #include <stdbool.h>
 #include <stdlib.h>
@@ -19,7 +20,7 @@ Node *initializeNode(string word) {
 	cset__init(&children);
 	node->children = children;
 	NodeMap parents;
-	hashmap_init(&parents, nodePointerHash, nodePointerCompare);
+	hashmap_init(&parents, hashmap_hash_string, strcmp);
 	node->parents = parents;
 	return node;
 }
@@ -29,10 +30,10 @@ void addParent(Node *node, Node *parentNode) {
 	// if (times > 20)
 	// 	exit(EXIT_SUCCESS);
 	uint *parentCount;
-	if (!(parentCount = hashmap_get(&node->parents, parentNode))) {
+	if (!(parentCount = hashmap_get(&node->parents, parentNode->word))) {
 		parentCount = malloc(sizeof(uint));
 		*parentCount = 1;
-		hashmap_put(&node->parents, parentNode, parentCount);
+		hashmap_put(&node->parents, parentNode->word, parentCount);
 	} else {
 		*parentCount = *parentCount + 1;
 	}
@@ -55,3 +56,7 @@ bool isChild(Node *child, Node *parent) {
 size_t nodeChildCount(Node *node) { return cset__size(&node->children); }
 
 uint parentCount(Node *node) { return hashmap_size(&node->parents); }
+
+Node *getNodeFromWord(const char *word) {
+	return hashmap_get(graphDict, word);
+}
