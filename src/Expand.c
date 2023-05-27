@@ -27,9 +27,10 @@ void addDefinition(const char *word, uint appearances, NodeMap *defs) {
 		if (inMinSet(defWord)) {
 			uint *finalCount = malloc(sizeof(uint));
 			*finalCount = appearances * (*defWordCount);
-			addToDefs(defs, word, finalCount);
+			addToDefs(defs, defWord, finalCount);
+		} else {
+			addDefinition(defWord, appearances * (*defWordCount), defs);
 		}
-		addDefinition(defWord, appearances * (*defWordCount), defs);
 	}
 }
 

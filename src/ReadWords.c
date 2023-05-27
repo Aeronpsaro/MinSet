@@ -17,8 +17,8 @@ StringSet *readDict(FILE *dictionary) {
 	stringSetInitialize(wordList);
 	string newWord = malloc(40 * sizeof(char));
 	for (uint i = 0; fscanf(dictionary, "%s", newWord) != EOF; i++) {
-		newWord = malloc(40 * sizeof(char));
 		cset__add(wordList, newWord);
+		newWord = malloc(40 * sizeof(char));
 	}
 	return wordList;
 }

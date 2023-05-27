@@ -3,5 +3,6 @@
 #include "String.h"
 
 Cset(string) StringSet;
+Cset_iterator(StringSet) StringSetIterator;
 
 void stringSetInitialize(StringSet *stringSet);
