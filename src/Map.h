@@ -1,4 +1,5 @@
 #pragma once
+#include <stdbool.h>
 #include "../deps/templated-hashmap/hashmap.h"
 #include "Node.h"
 

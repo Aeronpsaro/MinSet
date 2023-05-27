@@ -13,8 +13,11 @@ run: all clean
 clean:
 	rm $(BUILD)/*.o
 
-all: $(BUILD)/ReadWords.o $(BUILD)/PrintUtils.o $(BUILD)/GetCore.o $(BUILD)/MinSet.o $(BUILD)/StringSet.o
+all: $(BUILD)/ReadWords.o $(BUILD)/PrintUtils.o $(BUILD)/GetCore.o $(BUILD)/MinSet.o $(BUILD)/StringSet.o $(BUILD)/Expand.o
 	$(CC) $(DEBUGFLAGS) $(SRC)/Main.c deps/templated-hashmap/hashmap.o $(BUILD)/*.o -o $(BIN)/MinConj
+
+$(BUILD)/Expand.o: $(SRC)/Expand.c $(BUILD)/Node.o $(BUILD)/StringSet.o
+	$(CC) $(DEBUGFLAGS) -c $(SRC)/Expand.c deps/templated-hashmap/hashmap.o $(BUILD)/Node.o $(BUILD)/StringSet.o -o $(BUILD)/Expand.o
 
 $(BUILD)/PrintUtils.o: $(SRC)/PrintUtils.c
 	$(CC) $(DEBUGFLAGS) -c $(SRC)/PrintUtils.c -o $(BUILD)/PrintUtils.o
