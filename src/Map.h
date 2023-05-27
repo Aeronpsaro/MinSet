@@ -5,3 +5,4 @@
 typedef HASHMAP(char, Node) Map;
 
 extern Map *graphDict;
+extern Map *fullDict;

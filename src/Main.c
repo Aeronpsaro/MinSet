@@ -12,6 +12,7 @@
 #include <stdlib.h>
 
 Map *graphDict;
+Map *fullDict;
 
 int main() {
 	FILE *validWordsDict = fopen("dict/Clave_con_categorías.txt", "r");
@@ -20,7 +21,7 @@ int main() {
 	graphDict = readDefs(dictionary, validWords);
 	cset__free(validWords);
 	printf("El número de palabras del diccionario es %zu\n",
-	       hashmap_size(graphDict));
+	       hashmap_size(fullDict));//(graphDict));
 	const char *word;
 	Node *node;
 	// hashmap_foreach_data(node, graphDict) { printf("%s\n", node->word); printParents(node); }
