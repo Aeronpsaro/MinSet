@@ -12,16 +12,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// #define TEST
+#ifndef TEST
+	#define VALID_DICT "dict/Clave_con_categorías.txt"
+	#define DICT "dict/Clave_Legible.txt"
+	#define MATRIX_DICT "dict/synonymMatrix.csv"
+#endif
+#ifdef TEST
+	#define VALID_DICT "dict/Valid_Test.txt"
+	#define DICT "dict/Legible_Test.txt"
+	#define MATRIX_DICT "dict/synonymMatrixTest.csv"
+#endif
+
 Map *graphDict;
 Map *fullDict;
 StringSet *minSet;
 
 int main() {
 	FILE *validWordsDict =
-	    fopen("dict/Clave_con_categorías.txt",
+	    fopen(VALID_DICT,
 		  "r"); //"dict/Clave_con_categorías.txt", "r");
 	FILE *dictionary =
-	    fopen("dict/Clave_Legible.txt", "r"); //"dict/Clave_Legible.txt", "r");
+	    fopen(DICT, "r"); //"dict/Clave_Legible.txt", "r");
 	StringSet *validWords = readDict(validWordsDict);
 	graphDict = readDefs(dictionary, validWords);
 	cset__free(validWords);
@@ -55,7 +67,7 @@ int main() {
 		freeNode(node);
 	}
 	hashmap_cleanup(graphDict);
-	FILE *synonymMatrix = fopen("dict/synonymMatrix.csv", "w");
+	FILE *synonymMatrix = fopen(MATRIX_DICT, "w");
 	for (int j = 0; j < i; j++) {
 		fprintf(synonymMatrix, ";%s", minSetOrder[j]);
 	}
