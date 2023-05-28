@@ -6,3 +6,5 @@ Cset(string) StringSet;
 Cset_iterator(StringSet) StringSetIterator;
 
 void stringSetInitialize(StringSet *stringSet);
+
+extern StringSet *minSet;

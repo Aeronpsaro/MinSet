@@ -19,6 +19,7 @@ void addChildren(Node *node, Node *childrenNode) {
 	NodeSet temp;
 	cset__init(&temp);
 	cset__union(&temp, &node->children, children);
+	cset__free(&node->children);
 	node->children = temp;
 }
 

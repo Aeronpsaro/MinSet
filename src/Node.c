@@ -43,6 +43,10 @@ void addParent(Node *node, Node *parentNode) {
 
 void freeNode(Node *node) {
 	cset__free(&node->children);
+	uint *appearances;
+	hashmap_foreach_data(appearances, &node->parents){
+		free(appearances);
+	}
 	hashmap_cleanup(&node->parents);
 	free(node);
 }

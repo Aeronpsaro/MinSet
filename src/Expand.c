@@ -1,11 +1,14 @@
 #include "Map.h"
 #include "Node.h"
+#include "StringSet.h"
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 
 bool inMinSet(const char *word) {
-	return !(hashmap_get(graphDict, word) == NULL);
+	bool inMinSet;
+	cset__contains(minSet, word, &inMinSet);
+	return inMinSet;
 }
 
 void addToDefs(NodeMap *defs, const char *word, uint *count) {
@@ -28,8 +31,10 @@ void addDefinition(const char *word, uint appearances, NodeMap *defs) {
 			uint *finalCount = malloc(sizeof(uint));
 			*finalCount = appearances * (*defWordCount);
 			addToDefs(defs, defWord, finalCount);
+			free(finalCount);
 		} else {
-			addDefinition(defWord, appearances * (*defWordCount), defs);
+			addDefinition(defWord, appearances * (*defWordCount),
+				      defs);
 		}
 	}
 }
@@ -49,7 +54,7 @@ NodeMap *expandNode(Node *node) {
 		if (inMinSet(word)) {
 			uint *count = malloc(sizeof(uint));
 			*count = *wordCount;
-			addToDefs(minDef, word, count); 
+			addToDefs(minDef, word, count);
 			free(count);
 		} else {
 			addDefinition(word, *wordCount, minDef);
