@@ -5,6 +5,8 @@
 #include <string.h>
 #include <sys/types.h>
 
+#define MAX_STACK_DEPTH 10
+
 bool inMinSet(const char *word) {
 	bool inMinSet;
 	cset__contains(minSet, word, &inMinSet);
@@ -22,7 +24,8 @@ void addToDefs(NodeMap *defs, const char *word, uint *count) {
 	}
 }
 
-void addDefinition(const char *word, uint appearances, NodeMap *defs) {
+void addDefinition(const char *word, uint appearances, NodeMap *defs, uint stackDepth) {
+	if (stackDepth == MAX_STACK_DEPTH) return;
 	Node *wordNode = hashmap_get(fullDict, word);
 	const char *defWord;
 	uint *defWordCount;
@@ -34,7 +37,7 @@ void addDefinition(const char *word, uint appearances, NodeMap *defs) {
 			free(finalCount);
 		} else {
 			addDefinition(defWord, appearances * (*defWordCount),
-				      defs);
+				      defs, stackDepth + 1);
 		}
 	}
 }
@@ -57,7 +60,7 @@ NodeMap *expandNode(Node *node) {
 			addToDefs(minDef, word, count);
 			free(count);
 		} else {
-			addDefinition(word, *wordCount, minDef);
+			addDefinition(word, *wordCount, minDef, 0);
 		}
 	}
 	return minDef;
