@@ -1,0 +1,183 @@
+[
+  {
+    "arguments": [
+      "/usr/lib64/ccache/gcc",
+      "-O0",
+      "-g3",
+      "-Warray-bounds",
+      "-Wformat-overflow",
+      "-Wstringop-overflow",
+      "-Wstringop-overread",
+      "-c",
+      "-o",
+      "build/StringSet.o",
+      "src/StringSet.c"
+    ],
+    "directory": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet",
+    "file": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/src/StringSet.c",
+    "output": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/build/StringSet.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/gcc",
+      "-O0",
+      "-g3",
+      "-Warray-bounds",
+      "-Wformat-overflow",
+      "-Wstringop-overflow",
+      "-Wstringop-overread",
+      "-c",
+      "-o",
+      "build/hashmap.o",
+      "deps/templated-hashmap/hashmap.c"
+    ],
+    "directory": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet",
+    "file": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/deps/templated-hashmap/hashmap.c",
+    "output": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/build/hashmap.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/gcc",
+      "-O0",
+      "-g3",
+      "-Warray-bounds",
+      "-Wformat-overflow",
+      "-Wstringop-overflow",
+      "-Wstringop-overread",
+      "-c",
+      "build/hashmap.o",
+      "-o",
+      "build/Node.o",
+      "src/Node.c"
+    ],
+    "directory": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet",
+    "file": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/src/Node.c",
+    "output": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/build/Node.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/gcc",
+      "-O0",
+      "-g3",
+      "-Warray-bounds",
+      "-Wformat-overflow",
+      "-Wstringop-overflow",
+      "-Wstringop-overread",
+      "-c",
+      "build/hashmap.o",
+      "build/Node.o",
+      "build/StringSet.o",
+      "-o",
+      "build/ReadWords.o",
+      "src/ReadWords.c"
+    ],
+    "directory": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet",
+    "file": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/src/ReadWords.c",
+    "output": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/build/ReadWords.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/gcc",
+      "-O0",
+      "-g3",
+      "-Warray-bounds",
+      "-Wformat-overflow",
+      "-Wstringop-overflow",
+      "-Wstringop-overread",
+      "-c",
+      "-o",
+      "build/PrintUtils.o",
+      "src/PrintUtils.c"
+    ],
+    "directory": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet",
+    "file": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/src/PrintUtils.c",
+    "output": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/build/PrintUtils.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/gcc",
+      "-O0",
+      "-g3",
+      "-Warray-bounds",
+      "-Wformat-overflow",
+      "-Wstringop-overflow",
+      "-Wstringop-overread",
+      "-c",
+      "build/hashmap.o",
+      "build/Node.o",
+      "-o",
+      "build/GetCore.o",
+      "src/GetCore.c"
+    ],
+    "directory": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet",
+    "file": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/src/GetCore.c",
+    "output": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/build/GetCore.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/gcc",
+      "-O0",
+      "-g3",
+      "-Warray-bounds",
+      "-Wformat-overflow",
+      "-Wstringop-overflow",
+      "-Wstringop-overread",
+      "-c",
+      "build/hashmap.o",
+      "build/Node.o",
+      "-o",
+      "build/MinSet.o",
+      "src/MinSet.c"
+    ],
+    "directory": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet",
+    "file": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/src/MinSet.c",
+    "output": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/build/MinSet.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/gcc",
+      "-O0",
+      "-g3",
+      "-Warray-bounds",
+      "-Wformat-overflow",
+      "-Wstringop-overflow",
+      "-Wstringop-overread",
+      "-c",
+      "build/hashmap.o",
+      "build/Node.o",
+      "build/StringSet.o",
+      "-o",
+      "build/Expand.o",
+      "src/Expand.c"
+    ],
+    "directory": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet",
+    "file": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/src/Expand.c",
+    "output": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/build/Expand.o"
+  },
+  {
+    "arguments": [
+      "/usr/lib64/ccache/gcc",
+      "-c",
+      "-O0",
+      "-g3",
+      "-Warray-bounds",
+      "-Wformat-overflow",
+      "-Wstringop-overflow",
+      "-Wstringop-overread",
+      "build/Expand.o",
+      "build/GetCore.o",
+      "build/hashmap.o",
+      "build/MinSet.o",
+      "build/Node.o",
+      "build/PrintUtils.o",
+      "build/ReadWords.o",
+      "build/StringSet.o",
+      "-o",
+      "bin/MinConj",
+      "src/Main.c"
+    ],
+    "directory": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet",
+    "file": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/src/Main.c",
+    "output": "/home/Aeron/Universidad/ULPGC/4º Curso/2º Semestre/Trabajo de Fin de Grado - ULPGC/MinSet/bin/MinConj"
+  }
+]
