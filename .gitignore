@@ -1,5 +1,7 @@
 *.txt
 *.bak
 *.csv
+*.out
 build/
 bin/
+.cache
