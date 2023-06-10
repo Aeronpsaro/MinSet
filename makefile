@@ -17,7 +17,7 @@ run: all clean
 clean:
 	rm $(BUILD)/*.o
 
-all: $(BUILD)/ReadWords.o $(BUILD)/PrintUtils.o $(BUILD)/GetCore.o $(BUILD)/MinSet.o $(BUILD)/StringSet.o $(BUILD)/Expand.o $(BUILD)/hashmap.o
+all: $(BUILD)/ReadWords.o $(BUILD)/PrintUtils.o $(BUILD)/GetCore.o $(BUILD)/MinSet.o $(BUILD)/StringSet.o $(BUILD)/Expand.o $(BUILD)/hashmap.o $(BUILD)/heap.o
 	$(CC) $(CCFLAGS) $(SRC)/Main.c $(BUILD)/*.o -o $(BIN)/MinConj
 
 $(BUILD)/Expand.o: $(SRC)/Expand.c $(BUILD)/Node.o $(BUILD)/StringSet.o
@@ -32,7 +32,7 @@ $(BUILD)/ReadWords.o: $(SRC)/ReadWords.c $(BUILD)/StringSet.o $(BUILD)/Node.o
 $(BUILD)/GetCore.o: $(SRC)/GetCore.c $(BUILD)/Node.o
 	$(CC) $(CCFLAGS) -c $(SRC)/GetCore.c -o $(BUILD)/GetCore.o
 
-$(BUILD)/MinSet.o: $(SRC)/MinSet.c $(BUILD)/Node.o
+$(BUILD)/MinSet.o: $(SRC)/MinSet.c $(BUILD)/Node.o $(BUILD)/heap.o
 	$(CC) $(CCFLAGS) -c $(SRC)/MinSet.c -o $(BUILD)/MinSet.o
 
 $(BUILD)/Node.o: $(SRC)/Node.c
@@ -43,3 +43,6 @@ $(BUILD)/StringSet.o: $(SRC)/StringSet.c
 
 $(BUILD)/hashmap.o: $(DEPS)/templated-hashmap/hashmap.c
 	$(CC) $(CCFLAGS) -c $(DEPS)/templated-hashmap/hashmap.c -o $(BUILD)/hashmap.o
+
+$(BUILD)/heap.o: local-deps/heap/heap.c
+	$(CC) $(CCFLAGS) -c local-deps/heap/heap.c -o $(BUILD)/heap.o
