@@ -13,7 +13,7 @@ int nodePointerCompare(const Node *x, const Node *y) {
 	return x - y;
 }
 
-Node *initializeNode(string word) {
+Node *initializeNode(const string word) {
 	Node *node = (Node *)malloc(sizeof(Node));
 	node->word = word;
 	NodeSet children;
@@ -51,15 +51,15 @@ void freeNode(Node *node) {
 	free(node);
 }
 
-bool isChild(Node *child, Node *parent) {
+bool isChild(const Node *child, Node *parent) {
 	bool isChild;
 	cset__contains(&parent->children, child, &isChild);
 	return isChild;
 }
 
-size_t nodeChildCount(Node *node) { return cset__size(&node->children); }
+size_t nodeChildCount(const Node *node) { return cset__size(&node->children); }
 
-uint parentCount(Node *node) { return hashmap_size(&node->parents); }
+uint parentCount(const Node *node) { return hashmap_size(&node->parents); }
 
 Node *getNodeFromWord(const char *word) {
 	return hashmap_get(graphDict, word);
