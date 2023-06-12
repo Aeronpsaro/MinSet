@@ -8,5 +8,5 @@ typedef struct {
 	uint *appearances;
 } WordArray;
 
-float wordDistance(WordArray *, WordArray *);
-void wordArrayPrint(WordArray *word);
+float wordDistance(const WordArray *, const WordArray *);
+void wordArrayPrint(const WordArray *word);
