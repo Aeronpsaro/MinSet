@@ -10,8 +10,6 @@
 #include <string.h>
 #include <sys/types.h>
 
-#define dictSize 41493
-
 StringSet *readDict(FILE *dictionary) {
 	StringSet *wordList = malloc(sizeof(StringSet));
 	stringSetInitialize(wordList);
