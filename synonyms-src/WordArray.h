@@ -10,3 +10,5 @@ typedef struct {
 
 float wordDistance(const WordArray *, const WordArray *);
 void wordArrayPrint(const WordArray *word);
+WordArray *wordArraySum(const WordArray *restrict word1,
+			const WordArray *restrict word2);

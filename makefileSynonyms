@@ -4,8 +4,8 @@ OPTFLAGS	= -O3 -march=native -mtune=native -flto -ffast-math
 DEBUGFLAGS	= -O0 -g3 -Warray-bounds -Wformat-overflow -Wstringop-overflow -Wstringop-overread
 PROFFLAGS	= -pg
 LIBS		= -lm
-# CCFLAGS		= $(DEBUGFLAGS) $(COMFLAGS) $(PROFFLAGS)
-CCFLAGS		= $(OPTFLAGS) $(COMFLAGS)
+CCFLAGS		= $(DEBUGFLAGS) $(COMFLAGS) $(PROFFLAGS)
+# CCFLAGS		= $(OPTFLAGS) $(COMFLAGS) $(PROFFLAGS)
 BUILD		= build
 BIN		= bin
 SRC		= synonyms-src
