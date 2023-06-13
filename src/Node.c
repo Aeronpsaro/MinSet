@@ -26,9 +26,6 @@ Node *initializeNode(const string word) {
 }
 
 void addParent(Node *node, Node *parentNode) {
-	// static uint times = 0;
-	// if (times > 20)
-	// 	exit(EXIT_SUCCESS);
 	uint *parentCount;
 	if (!(parentCount = hashmap_get(&node->parents, parentNode->word))) {
 		parentCount = malloc(sizeof(uint));
@@ -37,8 +34,6 @@ void addParent(Node *node, Node *parentNode) {
 	} else {
 		*parentCount = *parentCount + 1;
 	}
-	// printParentsAdresses(node);
-	// times++;
 }
 
 void freeNode(Node *node) {
