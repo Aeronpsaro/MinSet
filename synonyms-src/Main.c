@@ -11,6 +11,10 @@ int main(int argc, const char *argv[argc + 1]) {
 	CsvHandle csv = CsvOpen2("dict/synonymMatrix.csv", ';', '"', '\\');
 	const char *word = argv[1];
 	WordArray wordArray = findWord(&csv, word);
+	if (wordArray.length == 0) {
+		printf("La palabra %s no está en el diccionario.\n", word);
+		return 1;
+	}
 	CsvClose(csv);
 	WordArray *total = malloc(sizeof(WordArray));
 	*total = wordArray;
