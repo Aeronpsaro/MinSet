@@ -24,10 +24,8 @@ SynonymHeap *findSynonyms(CsvHandle *csv, WordArray *wordArray) {
 		assert(col != NULL);
 		if (strcmp(col, wordArray->word) == 0)
 			continue;
-		// printf("%s\n", col);
 		char *word = malloc(strlen(col) + 1);
 		strcpy(word, col);
-		// printf("%s\n", currentWordArray.word);
 		uint i = 0;
 		while ((col = CsvReadNextCol(row, *csv))) {
 			currentWordArray.appearances[i++] = atoi(col);

@@ -35,7 +35,7 @@ float euclideanWordDistance(const WordArray *word1, const WordArray *word2) {
 
 float logWordDistance(const WordArray *word1, const WordArray *word2) {
 	float distance = 0;
-	// #pragma omp parallel for reduction(+:distance)
+	#pragma omp parallel for reduction(+ : distance)
 	for (uint i = 0; i < word1->length; i++) {
 		distance += fabs(log(word1->appearances[i] + 1) -
 				 log(word2->appearances[i] + 1));
@@ -45,18 +45,15 @@ float logWordDistance(const WordArray *word1, const WordArray *word2) {
 
 float customDistance(const WordArray *word1, const WordArray *word2) {
 	float distance = 0;
-#pragma omp parallel
-	{
-#pragma omp for reduction(+ : distance)
-		for (uint i = 0; i < word1->length; i++) {
-			uint wa1 = word1->appearances[i];
-			uint wa2 = word1->appearances[i];
-			if ((wa1 == 0 && wa2 != 0) || (wa1 != 0 && wa2 == 0)) {
-				distance += 3.;
-			}
-			distance += fabs(log(word1->appearances[i] + 1) -
-					 log(word2->appearances[i] + 1));
+	#pragma omp parallel for reduction(+ : distance)
+	for (uint i = 0; i < word1->length; i++) {
+		uint wa1 = word1->appearances[i];
+		uint wa2 = word1->appearances[i];
+		if ((wa1 == 0 && wa2 != 0) || (wa1 != 0 && wa2 == 0)) {
+			distance += 3.;
 		}
+		distance += fabs(log(word1->appearances[i] + 1) -
+				 log(word2->appearances[i] + 1));
 	}
 	return distance;
 }

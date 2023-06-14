@@ -29,8 +29,6 @@ int main(int argc, const char *argv[argc + 1]) {
 	}
 	csv = CsvOpen2("dict/synonymMatrix.csv", ';', '"', '\\');
 	SynonymHeap synonyms = *findSynonyms(&csv, total);
-	// printf("%s\n", wordArray.word);
-	// wordArrayPrint(&wordArray);
 	for (uint i = 1; i <= 30; i++) {
 		const Synonym *synonym = heap_pop(&synonyms);
 		printf("Sinónimo %u, %s, Distancia: %f\n", i, synonym->word,
