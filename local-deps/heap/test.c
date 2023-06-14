@@ -15,13 +15,13 @@ bool compare(const int *a, const int *b) { return *a > *b; }
 int main() {
 	srand(time(NULL));
 	HEAP(int) heap;
-	int a[100];
+	int a[1000];
 	heap_init(&heap, compare);
-	for (unsigned int i = 0; i < 100; i++) {
+	for (unsigned int i = 0; i < 1000; i++) {
 		a[i] = rand();
 		heap_push(&heap, &a[i]);
 	}
-	for (unsigned int i = 0; i < 100; i++) {
+	for (unsigned int i = 0; i < 1000; i++) {
 		unsigned int element =
 		    *(unsigned int *)heap.heap_base.elements[i];
 		if (left(i) < 100) {
@@ -44,16 +44,17 @@ int main() {
 		previous = *current;
 		j++;
 	}
-	assert(j == 100);
+	assert(j == 1000);
 	a[0] = rand();
 	heap_push(&heap, &a[0]);
 	unsigned int i = 1;
-	unsigned k = 1;
-	previous = UINT_MAX;
-	while (i > 0 && k < 100) {
+	unsigned int k = 1;
+	previous = INT_MAX;
+	while (i > 0 && k < 1000) {
 		if (rand() <= RAND_MAX / 4) {
 			unsigned int popped = *heap_pop(&heap);
 			i--;
+			printf("popped: %u\n", popped);
 			assert(previous >= popped);
 			previous = popped;
 		} else {
@@ -61,6 +62,7 @@ int main() {
 			if (a[k] > previous)
 				previous = a[k];
 			heap_push(&heap, &a[k]);
+			printf("a[%u] = %u\n", k, a[k]);
 			k++;
 			i++;
 			for (unsigned int l = 0; l < i; l++) {

@@ -16,6 +16,11 @@ void heap_base_grow(struct heap_base *heap) {
 		heap->elements =
 		    realloc(heap->elements, heap->allocated * sizeof(void *));
 	}
+	if (heap->size < heap->allocated / 4 && heap->allocated >= 32) {
+		heap->allocated /= 2;
+		heap->elements =
+		    realloc(heap->elements, heap->allocated * sizeof(void *));
+	}
 }
 
 static inline unsigned int left_child_index(unsigned int index) {
