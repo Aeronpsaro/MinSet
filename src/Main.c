@@ -14,7 +14,7 @@
 
 // #define TEST
 #ifndef TEST
-	#define VALID_DICT "dict/Clave_con_categorías.txt"
+	#define VALID_DICT "dict/Vox_con_categorías.txt"
 	#define DICT "dict/Clave_Legible.txt"
 	#define MATRIX_DICT "dict/synonymMatrix.csv"
 #endif
