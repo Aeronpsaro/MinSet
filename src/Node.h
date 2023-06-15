@@ -21,16 +21,16 @@ struct Node {
 	NodeMap parents;
 };
 
-Node *initializeNode(string word);
+Node *initializeNode(const string word);
 
 void freeNode(Node *node);
 
 void addParent(Node *node, Node *parentNode);
 
-bool isChild(Node *child, Node *parent);
+bool isChild(const Node *child, Node *parent);
 
-size_t nodeChildCount(Node *node);
+size_t nodeChildCount(const Node *node);
 
-uint parentCount(Node *node);
+uint parentCount(const Node *node);
 
 Node *getNodeFromWord(const char *word);

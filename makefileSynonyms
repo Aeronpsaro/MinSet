@@ -1,0 +1,39 @@
+CC		= gcc
+COMFLAGS	= -fopenmp
+OPTFLAGS	= -O3 -march=native -mtune=native -flto -ffast-math
+DEBUGFLAGS	= -O0 -g3 -Warray-bounds -Wformat-overflow -Wstringop-overflow -Wstringop-overread
+PROFFLAGS	= -pg
+LIBS		= -lm
+CCFLAGS		= $(DEBUGFLAGS) $(COMFLAGS) $(PROFFLAGS)
+# CCFLAGS		= $(OPTFLAGS) $(COMFLAGS) $(PROFFLAGS)
+BUILD		= build
+BIN		= bin
+SRC		= synonyms-src
+DEPS		= deps
+
+.PHONY:run clean
+
+run: all clean
+	./$(BIN)/SynonymFinder
+
+clean:
+	rm $(BUILD)/*.o
+
+all: $(BUILD)/WordFinder.o $(BUILD)/SynonymFinder.o
+	echo $(CCFLAGS)
+	$(CC) $(CCFLAGS) $(SRC)/Main.c $(BUILD)/*.o -o $(BIN)/SynonymFinder $(LIBS)
+
+$(BUILD)/SynonymFinder.o: $(SRC)/SynonymFinder.c $(BUILD)/heap.o $(BUILD)/WordArray.o $(BUILD)/csv.o
+	$(CC) $(CCFLAGS) -c $(SRC)/SynonymFinder.c -o $(BUILD)/SynonymFinder.o
+
+$(BUILD)/WordFinder.o: $(SRC)/WordFinder.c $(BUILD)/WordArray.o $(BUILD)/csv.o
+	$(CC) $(CCFLAGS) -c $(SRC)/WordFinder.c -o $(BUILD)/WordFinder.o
+
+$(BUILD)/WordArray.o: $(SRC)/WordArray.c
+	$(CC) $(CCFLAGS) -c $(SRC)/WordArray.c -o $(BUILD)/WordArray.o $(LIBS)
+
+$(BUILD)/csv.o: $(DEPS)/csv-fast-reader/csv.c
+	$(CC) $(CCFLAGS) -c $(DEPS)/csv-fast-reader/csv.c -o $(BUILD)/csv.o
+
+$(BUILD)/heap.o: local-deps/heap/heap.c
+	$(CC) $(CCFLAGS) -c local-deps/heap/heap.c -o $(BUILD)/heap.o
